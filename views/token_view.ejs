@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Token</title>
+</head>
+<body>
+    <div style="align-items: center; text-align: center;">
+        <h1>Demo Get Token</h1>
+        <div>
+            <a href="/"><button type="button">Back</button></a><br/>
+            <div>
+                <label for="token">Token :</label>
+                <input type="text" name="token" value="<%= data.token %>" disabled="disabled" size="50">
+            </div>
+            <br/>
+            <div>
+                <h3>Logs</h3>
+                <div>
+                    <table style="margin-left: auto; margin-right: auto;">
+                        <tr>
+                            <td>
+                                <label for="token">API</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <textarea style="vertical-align: top;" name="api" id="" cols="60" rows="1" disabled="disabled"><%= data.api %></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="token">Request Headers</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <textarea style="vertical-align: top;" name="headers" id="" cols="50" rows="10" disabled="disabled"><%= data.headers %></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="token">Request Body</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <textarea style="vertical-align: top;" name="body" id="" cols="50" rows="10" disabled="disabled"><%= data.body %></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="token">Response</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <textarea style="vertical-align: top;" name="response" id="" cols="50" rows="10" disabled="disabled"><%= data.response %></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

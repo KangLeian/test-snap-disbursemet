@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank List</title>
+</head>
+<body>
+    <div style="align-items: center; text-align: center;">
+        <h1>Demo Bank List</h1>
+        <div>
+            <a href="/"><button type="button">Back</button></a><br/>
+            <div>
+                <table style="margin-left: auto;margin-right: auto;border: 1px solid black;border-collapse: collapse;">
+                    <tr>
+                        <th style="border: 1px solid black;"><strong>Bank</strong></th>
+                        <th style="border: 1px solid black;"><strong>Kode Bank</strong></th>
+                    </tr>
+                    <% data.banks.forEach((row, index) => { %>
+                        <tr>
+                            <td style="border: 1px solid black;"><%= row.beneficiaryBankName %></td>
+                            <td style="border: 1px solid black;"><%= row.beneficiaryBankCode %></td>
+                        </tr>
+                    <%})%>
+                </table>
+            </div>
+            <br/>
+            <div>
+                <h3>Logs</h3>
+                <div>
+                    <table style="margin-left: auto; margin-right: auto;">
+                        <tr>
+                            <td>
+                                <label for="token">API</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <textarea style="vertical-align: top;" name="api" id="" cols="60" rows="1" disabled="disabled"><%= data.api %></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="headers">Request Headers</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <textarea style="vertical-align: top;" name="headers" id="" cols="50" rows="10" disabled="disabled"><%= data.headers %></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="body">Request Body</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <textarea style="vertical-align: top;" name="body" id="" cols="50" rows="10" disabled="disabled"><%= data.body %></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="response">Response</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <textarea style="vertical-align: top;" name="response" id="" cols="50" rows="10" disabled="disabled"><%= data.response %></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+node_modules
+package-lock.json
+config/index.js
+mykey/privatekey.pem
+mykey/publickey.pem

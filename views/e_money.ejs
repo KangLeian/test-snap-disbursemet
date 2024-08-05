@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E Money</title>
+</head>
+<body>
+    <div style="align-items: center; text-align: center;">
+        <h1>Demo E Money</h1>
+        <div>
+            <form action="/eMoney" method="post">
+                <table style="margin-left: auto; margin-right: auto;">
+                    <tr>
+                        <td>
+                            <label for="token">token</label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <input type="text" name="token" value="<%= data.accessToken %>" size="50">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="transNo">Nomor transaksi</label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <input type="text" name="transNo" size="50">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="accountNo">Nomor telepon</label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <input type="text" name="accountNo" size="50">
+                        </td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td>
+                            <label for="amount">Nominal transfer</label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <input type="text" name="amount" size="50">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="eMoney">Tujuan Transaksi</label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <select name="eMoney" id="eMoney">
+                                <% data.eMoney.forEach((row, index) => { %>
+                                    <% if(row.type == "E-Wallet"){ %>
+                                        <option value="<%= row.beneficiaryBankCode %>"><%= row.beneficiaryBankCode %> - <%= row.beneficiaryBankName %></option>
+                                    <%}%>
+                                <%})%>
+                                <!-- <option value="1010">OVO</option>
+                                <option value="1011">Gopay</option>
+                                <option value="1012">DANA</option>
+                                <option value="1013">Shopeepay</option>
+                                <option value="1014">LinkAja Direct</option> -->
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <button type="submit">Inquiry Account</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

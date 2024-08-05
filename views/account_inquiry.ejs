@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Inquiry</title>
+</head>
+<body>
+    <div style="align-items: center; text-align: center;">
+        <h1>Demo Account Inquiry</h1>
+        <div>
+            <form action="/accountInquiry" method="post">
+                <table style="margin-left: auto; margin-right: auto;">
+                    <tr>
+                        <td>
+                            <label for="token">Token</label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <input type="text" name="token" value="<%= data.accessToken %>" size="50">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="accountNo">No Rekening</label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <input type="text" name="accountNo" size="50">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="bankCode">Kode Bank</label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <select name="bankCode" id="bankCode" onchange="handleBankSelection(this)">
+                                <% data.banks.forEach((row, index) => { %>
+                                    <% if(row.type == "Bank Transfer"){ %>
+                                        <option value="<%= JSON.stringify(row) %>"><%= row.beneficiaryBankCode %> - <%= row.beneficiaryBankName %></option>
+                                    <%}%>
+                                <%})%>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="amount">Nominal transfer</label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <input type="number" name="amount" size="50">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="transNo">Nomor transaksi</label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <input type="text" name="transNo" size="50">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="transferType">Metode Transfer</label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <select name="transferType" id="transferType">
+                                <option value="INTERBANK">INTERBANK</option>
+                                <option value="RTGS">RTGS</option>
+                                <option value="SKN">SKN</option>
+                                <option value="BIFAST">BIFAST</option>
+                                <option value="interbank">interbank</option>
+                                <option value="rtgs">rtgs</option>
+                                <option value="skn">skn</option>
+                                <option value="bifast">bifast</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                </div>
+                <button type="submit">Inquiry</button>
+            </form>
+            <script>
+                function handleBankSelection(val){
+                    let obj = JSON.parse(val.value)
+                    console.log(obj)
+                    let options = document.getElementById("transferType").options
+                    for(let opt of options){
+                        if(opt.value.toLowerCase() == "bifast" && obj.isBifast == false){
+                            opt.disabled = true
+                        }else{
+                            opt.disabled = false
+                        }
+                    }
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>

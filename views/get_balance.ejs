@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Balance</title>
+</head>
+<body>
+    <div style="align-items: center; text-align: center;">
+        <h1>Demo Get Balance</h1>
+        <div>
+            <form action="/getBalance" method="post">
+                <div>
+                    <label for="token">Token :</label>
+                    <input type="text" name="token" value="<%= data.accessToken %>" size="50">
+                </div>
+                <button type="submit">Get Balance</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

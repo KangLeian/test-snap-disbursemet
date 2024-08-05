@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Status</title>
+</head>
+<body>
+    <div style="align-items: center; text-align: center;">
+        <h1>Demo Transaction Status</h1>
+        <div>
+            <form action="/transactionStatus" method="post">
+                <table style="margin-left: auto; margin-right: auto;">
+                    <tr>
+                        <td>
+                            <label for="token">Token</label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <input type="text" name="token" value="<%= data.accessToken %>" size="50">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="partnerReferenceNo">partnerReferenceNo</label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <input type="text" name="partnerReferenceNo" size="50">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="referenceNo">referenceNo</label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <input type="text" name="referenceNo" size="50">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="transferMethod">Transfer Method :</label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <select name="transferMethod" id="transferMethod">
+                                <option value="18">INTERBANK/BIFAST</option>
+                                <option value="22">RTGS</option>
+                                <option value="23">SKN</option>
+                                <option value="38">E-Money Top Up</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <button type="submit">Check</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

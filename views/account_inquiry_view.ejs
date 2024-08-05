@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Inquiry</title>
+</head>
+<body>
+    <div style="align-items: center; text-align: center;">
+        <h1>Demo Account Inquiry</h1>
+        <div>
+            <a href="/"><button type="button">Back</button></a><br/>
+            <div>
+                <form action="/transfer" method="post">
+                    <table style="margin-left: auto; margin-right: auto;">
+                        <tr>
+                            <td>
+                                <label for="partnerReferenceNo">partnerReferenceNo</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <input type="text" name="partnerReferenceNo" value="<%= data.partnerReferenceNo %>" readonly="readonly" size="50">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="referenceNo">referenceNo</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <input type="text" name="referenceNo" value="<%= data.referenceNo %>" readonly="readonly" size="50">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="accountNo">Nomor Rekening</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <input type="text" name="accountNo" value="<%= data.accountNo %>" readonly="readonly" size="50">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="accountName">Pemilik Rekening</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <input type="text" name="accountName" value="<%= data.accountName %>" readonly="readonly" size="50">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="bank">Bank</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <input type="text" name="bank" value="<%= data.bank %>" readonly="readonly" size="50">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="amount">Nominal transfer</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <input type="text" name="amount" value="<%= data.amount %>" size="50">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="remark">Tujuan Transaksi</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <input type="text" name="remark" size="50">
+                            </td>
+                        </tr>
+                        <% if (data.transferType == "RTGS" || data.transferType == "SKN") { %>
+                            <tr>
+                                <td>
+                                    <label for="citizenship">Kewarganegaraan penerima</label>
+                                </td>
+                                <td>
+                                    :
+                                </td>
+                                <td>
+                                    <select name="citizenship" id="citizenship">
+                                        <option value="1">WNI/Indenesian</option>
+                                        <option value="2">WNA/Foreigners</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="beneficiaryType">Jenis Entitas penerima</label>
+                                </td>
+                                <td>
+                                    :
+                                </td>
+                                <td>
+                                    <select name="beneficiaryType" id="beneficiaryType">
+                                        <option value="1">Individu</option>
+                                        <option value="2">Perusahaan/Corporation</option>
+                                        <option value="3">Pemerintah/Goverment</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        <% } %>
+                        <tr>
+                            <td>
+                                <input type="text" name="bankCode" value="<%= data.bankCode %>" readonly="readonly" hidden>
+                                <input type="text" name="transferType" value="<%= data.transferType %>" readonly="readonly" hidden>
+                                <input type="text" name="token" value="<%= data.token %>" readonly="readonly" hidden>
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="submit">Transfer</button>
+                </form>
+            </div>
+            <br/>
+            <div>
+                <h3>Logs</h3>
+                <div>
+                    <table style="margin-left: auto; margin-right: auto;">
+                        <tr>
+                            <td>
+                                <label for="token">API</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <textarea style="vertical-align: top;" name="api" id="" cols="60" rows="1" disabled="disabled"><%= data.api %></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="token">Request Headers</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <textarea style="vertical-align: top;" name="headers" id="" cols="50" rows="10" disabled="disabled"><%= data.headers %></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="token">Request Body</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <textarea style="vertical-align: top;" name="body" id="" cols="50" rows="10" disabled="disabled"><%= data.body %></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="token">Response</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <textarea style="vertical-align: top;" name="response" id="" cols="50" rows="10" disabled="disabled"><%= data.response %></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
