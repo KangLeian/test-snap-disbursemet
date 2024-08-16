@@ -16,6 +16,9 @@ class Transfer {
         if(req.body.transferType == "SKN"){
             endpoint = endpoint.split("-")[0] + "-skn"
         }
+        if(req.body.transferType == "intrabank"){
+            endpoint = endpoint.split("-")[0] + "-intrabank"
+        }
         const api = duitkuDomain + endpoint
         let accessToken = req.body.token
         let randomNumber = Math.floor(100000000000000000000 + Math.random() * 900000000000000000000).toString()
@@ -55,6 +58,22 @@ class Transfer {
                     currency: "IDR"
                 },
                 additionalInfo: {
+                    remark: body.remark
+                }
+                    
+            }
+        }else if(type == "intrabank"){
+            return {
+                partnerReferenceNo: body.partnerReferenceNo,
+                beneficiaryAccountNo: body.accountNo,
+                sourceAccountNo: config.userId,
+                transactionDate: toIsoString(date),
+                amount: {
+                    value: body.amount + ".00",
+                    currency: "IDR"
+                },
+                additionalInfo: {
+                    beneficiaryBankCode: body.bankCode,
                     remark: body.remark
                 }
                     

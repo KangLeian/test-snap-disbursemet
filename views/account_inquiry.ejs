@@ -9,7 +9,85 @@
     <div style="align-items: center; text-align: center;">
         <h1>Demo Account Inquiry</h1>
         <div>
-            <form action="/accountInquiry" method="post">
+            <div style="margin-right: 40%; margin-left: 40%;">
+                <div style="display: flex;justify-content: space-between;">
+                    <div>
+                        <input type="radio" name="inquiryType" value="internal" onchange="handleInquirType(this.value)">
+                        <label for="internal">Sesama Bank</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="inquiryType" value="external" onchange="handleInquirType(this.value)">
+                        <label for="external">Antar Bank</label>
+                    </div>
+                </div>
+            </div>
+            <form action="/accountInquiryInternal" method="post" style="display: none;" id="internal">
+                <table style="margin-left: auto; margin-right: auto;">
+                    <tr>
+                        <td>
+                            <label for="token">Token</label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <input type="text" name="token" value="<%= data.accessToken %>" size="50">
+                        </td>
+                        <tr>
+                            <td>
+                                <label for="accountNo">No Rekening</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <input type="text" name="accountNo" size="50">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="bankCode">Kode Bank</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <select name="bankCode" id="bankCode">
+                                    <% data.intrabanks.forEach((row, index) => { %>
+                                        <% if(row.type == "Bank Transfer"){ %>
+                                            <option value="<%= JSON.stringify(row) %>"><%= row.beneficiaryBankCode %> - <%= row.beneficiaryBankName %></option>
+                                        <%}%>
+                                    <%})%>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="amount">Nominal transfer</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <input type="number" name="amount" size="50">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="transNo">Nomor transaksi</label>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <input type="text" name="transNo" size="50">
+                            </td>
+                        </tr>
+                    </tr>
+                </table>    
+                <button type="submit">Inquiry</button>
+            </form>
+            <form action="/accountInquiry" method="post" style="display: none;" id="external">
                 <table style="margin-left: auto; margin-right: auto;">
                     <tr>
                         <td>
@@ -109,6 +187,18 @@
                             opt.disabled = false
                         }
                     }
+                }
+
+                function handleInquirType(val) {
+                   if(val == "internal"){
+                    document.getElementById("internal").style.display="block";
+                    document.getElementById("external").style.display="none";
+                   }else if(val == "external"){
+                    document.getElementById("internal").style.display="none";
+                    document.getElementById("external").style.display="block";
+                   }else{
+                    alert("Invalid Type: " + val);
+                   }
                 }
             </script>
         </div>
