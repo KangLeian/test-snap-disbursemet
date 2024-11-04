@@ -52,13 +52,14 @@
                                 :
                             </td>
                             <td>
-                                <select name="bankCode" id="bankCode">
+                                <input list="intrabanks" name="bankCode">
+                                <datalist id="intrabanks">
                                     <% data.intrabanks.forEach((row, index) => { %>
                                         <% if(row.type == "Bank Transfer"){ %>
-                                            <option value="<%= JSON.stringify(row) %>"><%= row.beneficiaryBankCode %> - <%= row.beneficiaryBankName %></option>
+                                            <option value="<%= row.beneficiaryBankCode %>"><%= row.beneficiaryBankCode %> - <%= row.beneficiaryBankName %></option>
                                         <%}%>
                                     <%})%>
-                                </select>
+                                </datalist>   
                             </td>
                         </tr>
                         <tr>
@@ -119,13 +120,16 @@
                             :
                         </td>
                         <td>
-                            <select name="bankCode" id="bankCode" onchange="handleBankSelection(this)">
+                            <input list="banks" onchange="handleBankSelection(this)" name="bankCode">
+                            <datalist id="banks">
+                                <% let bankList = []; %>
                                 <% data.banks.forEach((row, index) => { %>
                                     <% if(row.type == "Bank Transfer"){ %>
-                                        <option value="<%= JSON.stringify(row) %>"><%= row.beneficiaryBankCode %> - <%= row.beneficiaryBankName %></option>
+                                        <% bankList[index] = row.isBifast + " " + row.beneficiaryBankCode %>
+                                        <option value="<%= row.beneficiaryBankCode %>"><%= row.beneficiaryBankCode %> - <%= row.beneficiaryBankName %></option>
                                     <%}%>
                                 <%})%>
-                            </select>
+                            </datalist>  
                         </td>
                     </tr>
                     <tr>
@@ -163,10 +167,6 @@
                                 <option value="RTGS">RTGS</option>
                                 <option value="SKN">SKN</option>
                                 <option value="BIFAST">BIFAST</option>
-                                <option value="interbank">interbank</option>
-                                <option value="rtgs">rtgs</option>
-                                <option value="skn">skn</option>
-                                <option value="bifast">bifast</option>
                             </select>
                         </td>
                     </tr>
@@ -176,12 +176,22 @@
                 <button type="submit">Inquiry</button>
             </form>
             <script>
+                let bifastSupportLibrary = "<%= bankList  %>".split(",");
+                let supportedBanks = []
+                bifastSupportLibrary.forEach(element => {
+                    console.log(element.split(" ")[0])
+                    if(element.split(" ")[0] == "true"){
+                        supportedBanks.push(element.split(" ")[1])
+                    }
+                }) 
                 function handleBankSelection(val){
-                    let obj = JSON.parse(val.value)
-                    console.log(obj)
+                    // let obj = JSON.parse(val.value)
+                    console.log(val.value)
+                    console.log(supportedBanks)
+                    console.log(supportedBanks.find((bank) => { return bank == val.value}))
                     let options = document.getElementById("transferType").options
                     for(let opt of options){
-                        if(opt.value.toLowerCase() == "bifast" && obj.isBifast == false){
+                        if(opt.value.toLowerCase() == "bifast" && supportedBanks.find((bank) => { return bank == val.value}) != val.value && val.value !== ""){
                             opt.disabled = true
                         }else{
                             opt.disabled = false

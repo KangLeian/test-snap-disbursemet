@@ -109,7 +109,7 @@ class AccountInquiry {
                     value: req.body.amount + ".00",
                     currency: "IDR"
                 },
-                beneficiaryBankCode: JSON.parse(req.body.bankCode).beneficiaryBankCode
+                beneficiaryBankCode: req.body.bankCode
             }
         }
         const headers = headersSymetricGenerator(date, method, endpoint, body, accessToken, randomNumber )
@@ -152,7 +152,7 @@ class AccountInquiry {
         let randomNumber = Math.floor(100000000000000000000 + Math.random() * 900000000000000000000).toString()
         const body = {
             beneficiaryAccountNo: req.body.accountNo,
-            beneficiaryBankCode: JSON.parse(req.body.bankCode).beneficiaryBankCode,
+            beneficiaryBankCode: req.body.bankCode,
             partnerReferenceNo: randomNumber,
             additionalInfo: {
                 billType: req.body.transferType,

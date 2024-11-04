@@ -1,5 +1,6 @@
 node_modules
 package-lock.json
 config/index.js
+config/prod.index.js
 mykey/privatekey.pem
 mykey/publickey.pem
